@@ -1,8 +1,15 @@
 import React from "react";
-import { Platform, StyleSheet, Text, View, TextInput } from "react-native";
+import {
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import TaskItem from "./components/TaskItem";
 import { borderLeftColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
-import { KeyboardAvoidingView } from "react-native-web";
 
 export default function App() {
   return (
@@ -22,7 +29,12 @@ export default function App() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.writeTaskWrapper}
       >
-        <TextInput style={styles.input} placeholder={'Write a task'}/>
+        <TextInput style={styles.input} placeholder={"Write task here..."} />
+        <TouchableOpacity>
+          <View style={styles.addWrapper}>
+            <Text style={styles.addText}>+</Text>
+          </View>
+        </TouchableOpacity>
       </KeyboardAvoidingView>
     </View>
   );
@@ -47,10 +59,34 @@ const styles = StyleSheet.create({
   itemList: {
     color: "#fff",
   },
-  input:{
-
+  input: {
+    paddingVertical: 15,
+    paddingHorizontal: 15,
+    backgroundColor: "#FFF",
+    borderRadius: 50,
+    borderColor: "#C0C0C0C0",
+    borderWidth: 3,
+    width: 250,
   },
   writeTaskWrapper: {
-    
+    position: "absolute",
+    bottom: 60,
+    width: "100%",
+    justifyContent: "space-around",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  addWrapper: {
+    width: 60,
+    height: 60,
+    backgroundColor: "#FFF",
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: "#C0C0C0C0",
+    borderWidth: 3,
+  },
+  addText: {
+    fontSize:32,
   },
 });
